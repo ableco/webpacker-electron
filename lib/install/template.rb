@@ -55,7 +55,7 @@ copy_file "#{__dir__}/public/electron.html", "public/electron.html"
 
 say "Installing all Electron dependencies"
 
-run "yarn add --dev electron electron-builder electron-notarize electron-devtools-installer electron-serve @babel/register dotenv dotenv-webpack concurrently cross-env html-webpack-plugin@4.5.1"
+run "yarn add --dev electron electron-builder electron-notarize electron-devtools-installer @babel/register dotenv dotenv-webpack concurrently cross-env html-webpack-plugin@4.5.1"
 run "yarn add electron-updater electron-log electron-debug"
 run "yarn run electron-builder install-app-deps"
 
