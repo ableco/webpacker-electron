@@ -1,0 +1,52 @@
+appId: com.worktimelabs.meet
+productName: Worktime Meetings
+extends: null
+directories:
+  app: "."
+  buildResources: public/assets
+  output: public/dist/
+files:
+  - "package.json"
+  - "!node_modules"
+  - from: public/packs-electron/
+    to: "."
+    filter: "**/main.production.js"
+  - from: public/packs-electron/
+    to: "."
+    filter: "**/index.html"
+  - from: public/packs-electron/
+    to: packs-electron/
+    filter: "**/*"
+# afterSign: .erb/scripts/Notarize.js
+asar: true
+extraMetadata:
+  main: "./main.production.js"
+mac:
+  target:
+    - dmg
+  type: distribution
+  hardenedRuntime: true
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  gatekeeperAssess: false
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+win:
+  target:
+    - nsis
+linux:
+  target:
+    - AppImage
+  category: Development
+# extraResources:
+#   - ./assets/**
+publish:
+  provider: github
+  owner: ableco
+  repo: worktime-meetings

@@ -1,0 +1,8 @@
+inherit_gem:
+  rubocop-able:
+    - config/default.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+
+Layout/LineLength: 200
