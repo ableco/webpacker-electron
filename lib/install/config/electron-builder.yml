@@ -17,7 +17,7 @@ files:
   - from: public/packs-electron/
     to: packs-electron/
     filter: "**/*"
-# afterSign: .erb/scripts/Notarize.js
+afterSign: lib/javascript/notarize.js
 asar: true
 extraMetadata:
   main: "./main.production.js"

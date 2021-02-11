@@ -7,19 +7,15 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import path from "path";
-import {
-  app,
-  session,
-  protocol,
-  BrowserWindow,
-  shell,
-} from "electron";
+import { app, session, protocol, BrowserWindow, shell } from "electron";
 import { autoUpdater } from "electron-updater";
 import log from "electron-log";
 import fs from "fs";
 import { promisify } from "util";
 
 const stat = promisify(fs.stat);
+
+const FILE_NOT_FOUND = -6;
 
 const getPath = async (path_) => {
   try {
@@ -166,7 +162,7 @@ const createWindow = async () => {
   });
 
   if (process.env.NODE_ENV === "development") {
-    mainWindow.loadURL("http://localhost:1212/dist/index.html");
+    mainWindow.loadURL("http://localhost:1212");
   } else {
     loadURL(mainWindow);
   }

@@ -15,30 +15,35 @@ say "Copying Webpacker configuration files for Electron"
 directory "#{__dir__}/config/webpack/electron", "config/webpack/electron"
 copy_file "#{__dir__}/config/electron-builder.yml", "config/electron-builder.yml"
 copy_file "#{__dir__}/lib/javascript/babel.js", "lib/javascript/babel.js"
+copy_file "#{__dir__}/lib/javascript/notarize.js", "lib/javascript/notarize.js"
 
 say "Updating webpack environment configuration to ignore Electron packs"
 
-insert_into_file Rails.root.join("config/webpack/environment.js"), after: "const { environment } = require(\"@rails/webpacker\");\n" do
-  <<~JS
+unless File.read(Rails.root.join("config/webpack/environment.js")).include?(".filter((key) => key.match(/^electron/))")
+  insert_into_file Rails.root.join("config/webpack/environment.js"), after: "const { environment } = require(\"@rails/webpacker\");\n" do
+    <<~JS
 
-  Object.keys(environment.entry)
-    .filter((key) => key.match(/^electron/))
-    .forEach((entry) => {
-      environment.entry.delete(entry);
-    });
+    Object.keys(environment.entry)
+      .filter((key) => key.match(/^electron/))
+      .forEach((entry) => {
+        environment.entry.delete(entry);
+      });
 
-  JS
+    JS
+  end
 end
 
 if File.exists?(Rails.root.join(".gitignore"))
-  append_to_file Rails.root.join(".gitignore") do
-    <<~TEXT
+  unless File.read(Rails.root.join(".gitignore")).include?("public/packs-electron")
+    append_to_file Rails.root.join(".gitignore") do
+      <<~TEXT
 
-    # Electron
-    public/packs-electron
-    public/dist
+      # Electron
+      public/packs-electron
+      public/dist
 
-    TEXT
+      TEXT
+    end
   end
 end
 
@@ -55,7 +60,7 @@ copy_file "#{__dir__}/public/electron.html", "public/electron.html"
 
 say "Installing all Electron dependencies"
 
-run "yarn add --dev electron electron-builder electron-notarize electron-devtools-installer @babel/register dotenv dotenv-webpack concurrently cross-env html-webpack-plugin@4.5.1"
+run "yarn add --dev electron electron-builder electron-notarize electron-devtools-installer @babel/register dotenv dotenv-webpack html-webpack-plugin@4.5.1 concurrently cross-env yaml"
 run "yarn add electron-updater electron-log electron-debug"
 run "yarn run electron-builder install-app-deps"
 

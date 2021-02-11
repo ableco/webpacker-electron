@@ -23,6 +23,7 @@
     "electron-notarize": "^1.0.0",
     "html-webpack-plugin": "4.5.1",
     "right-pad": "^1.0.1",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "yaml": "^1.10.0"
   }
 }

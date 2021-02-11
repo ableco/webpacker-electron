@@ -1,5 +1,5 @@
 # Webpacker::Electron
-Short description and motivation.
+Webpacker::Electron makes it easy to reuse your webpack-based JavaScript application files within an Electron app.
 
 ## Installation
 Add this line to your application's `Gemfile`:
