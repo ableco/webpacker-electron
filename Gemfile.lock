@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     webpacker-electron (0.1.0)
-      rails (~> 6.0.0)
+      rails (>= 6.0.0)
       webpacker
 
 GEM

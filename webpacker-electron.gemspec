@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.0.0"
+  spec.add_dependency "rails", ">= 6.0.0"
   spec.add_dependency "webpacker"
   spec.add_development_dependency "rubocop", "~> 0.76"
   spec.add_development_dependency "rubocop-able", "~> 0.2.2"
