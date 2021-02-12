@@ -177,7 +177,6 @@ DEPENDENCIES
   rubocop (~> 0.76)
   rubocop-able (~> 0.2.2)
   sqlite3
-  webpacker
   webpacker-electron!
 
 BUNDLED WITH
