@@ -39,7 +39,7 @@ const electronConfig = {
       debug: true,
     }),
     new HtmlWebpackPlugin({
-      title: "Worktime Meetings",
+      title: "Electron App",
       template: path.resolve(config.outputPath, "../", "electron.html"),
     }),
   ],

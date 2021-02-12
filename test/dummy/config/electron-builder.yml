@@ -1,5 +1,5 @@
-appId: com.worktimelabs.meet
-productName: Worktime Meetings
+appId: com.example.app
+productName: Electron App
 extends: null
 directories:
   app: "."
@@ -44,9 +44,7 @@ linux:
   target:
     - AppImage
   category: Development
-# extraResources:
-#   - ./assets/**
 publish:
   provider: github
-  owner: ableco
-  repo: worktime-meetings
+  owner:
+  repo:
