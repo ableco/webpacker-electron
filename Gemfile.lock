@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpacker-electron (0.1.1)
+    webpacker-electron (0.1.2)
       rails (>= 6.0.0)
       webpacker
 

@@ -20,8 +20,9 @@ copy_file "#{__dir__}/lib/javascript/notarize.js", "lib/javascript/notarize.js"
 say "Updating webpack environment configuration to ignore Electron packs"
 
 unless File.read(Rails.root.join("config/webpack/environment.js")).include?(".filter((key) => key.match(/^electron/))")
-  insert_into_file Rails.root.join("config/webpack/environment.js"), after: "const { environment } = require(\"@rails/webpacker\");\n" do
+  insert_into_file Rails.root.join("config/webpack/environment.js"), after: /const\ \{\ environment\ \}\ =\ require\(['"]@rails\/webpacker['"]\)/ do
     <<~JS
+
 
     Object.keys(environment.entry)
       .filter((key) => key.match(/^electron/))

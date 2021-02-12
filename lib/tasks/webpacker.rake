@@ -27,7 +27,7 @@ namespace :webpacker do
     source_entry_path = Webpacker.config.source_entry_path.join("electron")
 
     Dir.chdir(Rails.root) do
-      Kernel.exec "yarn run cross-env NODE_ENV=development electron -r ./lib/javascript/babel #{source_entry_path.join('main.js')}"
+      Kernel.exec "yarn run cross-env NODE_ENV=development electron -r ./lib/javascript/babel.js #{source_entry_path.join('main.js')}"
     end
   end
 
