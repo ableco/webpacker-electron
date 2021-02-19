@@ -39,9 +39,11 @@ if File.exists?(Rails.root.join(".gitignore"))
     append_to_file Rails.root.join(".gitignore") do
       <<~TEXT
 
+
       # Electron
-      public/packs-electron
-      public/dist
+      /public/packs-electron
+      /public/dist
+      !/public/assets
 
       TEXT
     end
@@ -61,8 +63,8 @@ copy_file "#{__dir__}/public/electron.html", "public/electron.html"
 
 say "Installing all Electron dependencies"
 
-run "yarn add --dev electron electron-builder electron-notarize electron-devtools-installer @babel/register dotenv dotenv-webpack html-webpack-plugin@4.5.1 concurrently cross-env yaml"
-run "yarn add electron-updater electron-log electron-debug"
+run "yarn add --dev electron-builder electron-notarize @babel/register babel-plugin-module-resolver dotenv dotenv-webpack html-webpack-plugin@4.5.1 concurrently cross-env yaml"
+run "yarn add electron electron-devtools-installer electron-updater electron-log electron-debug"
 run "yarn run electron-builder install-app-deps"
 
 say "Webpacker now supports Electron 🎉", :green
